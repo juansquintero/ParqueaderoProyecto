@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamFirebase.Views.AddProducts"
+             Title="Parqueadero"
+             Visual="Material"
+            NavigationPage.HasNavigationBar="True"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Vertical" Grid.Row="0" Padding="5" Spacing="5">
+                    <Label Text="PLACA" FontSize="22"/>
+                    <Entry x:Name="txtProductName" Placeholder="Placa" Text="{Binding product.placa}" 
+                       HorizontalOptions="FillAndExpand"/>
+                    <Label Text="TIPO" FontSize="22"/>
+                    <Entry x:Name="txtTipo" Placeholder="Tipo" Text="{Binding product.tipo}" 
+                       HorizontalOptions="FillAndExpand"/>
+                    <Label Text="TIPO DE VEHICULO" FontSize="22"/>
+                    <Entry x:Name="txtTipoVehiculo" Placeholder="Tipo de vehiculo" Text="{Binding product.tipoVehiculo}" 
+                       HorizontalOptions="FillAndExpand"/>
+                    <Label Text="MODELO" FontSize="22"/>
+                    <Entry x:Name="txtModelo" Placeholder="Modelo" Text="{Binding product.modelo}" 
+                       HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+                    <Label Text="CELULAR" FontSize="22"/>
+                    <Entry x:Name="txtCelular" Placeholder="Celular" Text="{Binding product.celular}" 
+                       HorizontalOptions="FillAndExpand" Keyboard="Telephone"/>
+                    <Label Text="FECHA DE INGRESO" FontSize="22"/>
+                    <DatePicker x:Name="dateFechaIngreso" MinimumDate="1/1/2022" MaximumDate="1/1/2023" Date="{Binding product.fechaIngreso}"/>
+                    <Label Text="FECHA DE SALIDA" FontSize="22"/>
+                    <DatePicker x:Name="dateFechaSalida" MinimumDate="1/1/2022" MaximumDate="1/1/2023" Date="{Binding product.fechaSalida}"/>
+                    <Label Text="HORA DE INGRESO" FontSize="22"/>
+                    <TimePicker x:Name="timeHoraIngreso" Time="{Binding product.horaIngreso}"/>
+                    <Label Text="HORA DE SALIDA" FontSize="22"/>
+                    <TimePicker x:Name="timeHoraSalida" Time="{Binding product.horaSalida}"/>
+                    <Label Text="OBSERVACIONES" FontSize="22"/>
+                    <Entry x:Name="txtOberservaciones" Placeholder="Observaciones" Text="{Binding product.observaciones}" 
+                       HorizontalOptions="FillAndExpand"/>
+                    <Label Text="SELECCIONE MENSUALIDAD" FontSize="22"/>
+                    <Entry x:Name="txtMensualidad" Placeholder="Digite si o no" Text="{Binding product.mensualidad}" 
+                       HorizontalOptions="FillAndExpand"/>
+                    <Label Text="FECHA DE ULTIMO PAGO" FontSize="22"/>
+                    <DatePicker x:Name="dateUltimoPago" MinimumDate="1/1/2022" MaximumDate="1/1/2023" Date="{Binding product.fechaUltimoPago}"/>
+                    <Label x:Name="txtUltimoPago" IsVisible="true" Text="A pas y salvo" />
+                    <Button x:Name="btnSave" Text="{Binding btnSaveText}"
+                        Command="{Binding btnSaveProduct}"  IsVisible="{Binding showButton}"/>
+
+                    <ActivityIndicator x:Name="activityIndicator1" IsVisible="{Binding isBusy}"
+                                   IsRunning="{Binding isBusy}"/>
+
+                    <Label FontSize="Micro"  x:Name="lblMessage" Text="{Binding lblMessage}"  HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Grid.Row="1" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"  VerticalOptions="Start" Padding="5"
+                             BackgroundColor="#c9c9c9">
+
+                        <Label Text="Placa" WidthRequest="150" TextColor="#000" FontAttributes="Bold"
+                                       VerticalOptions="Start"/>
+                        <Label Text="U.Pago" WidthRequest="300" TextColor="Aqua" FontAttributes="Bold"
+                                       VerticalOptions="Start"/>
+                        <Label Text="H.Ingreso" WidthRequest="300" TextColor="Aqua" FontAttributes="Bold"
+                                       VerticalOptions="Start"/>
+                        <Label Text="Mes" WidthRequest="100" TextColor="#fc0339" FontAttributes="Bold"
+                                       VerticalOptions="Start"/>
+                    </StackLayout>
+
+                    <ListView x:Name="lstProducts" ItemsSource="{Binding lstProducts}"
+                       HorizontalOptions="FillAndExpand" VerticalOptions="Start" SeparatorColor="Black"
+                      CachingStrategy="RecycleElement" ItemSelected="lstProducts_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="Start" Padding="5" BackgroundColor="#fff">
+                                        <Label Text="{Binding placa}" WidthRequest="150" TextColor="#000" 
+                                           FontAttributes="Bold" VerticalOptions="Start"/>
+                                        <Label Text="{Binding fechaUltimoPago}" WidthRequest="300" TextColor="Aqua" 
+                                       FontAttributes="Bold" VerticalOptions="Start"/>
+                                        <Label Text="{Binding horaIngreso}" WidthRequest="300" TextColor="Aqua" 
+                                       FontAttributes="Bold" VerticalOptions="Start"/>
+                                        <Label Text="{Binding mensualidad}" WidthRequest="100" TextColor="#fc0339" 
+                                       FontAttributes="Bold" VerticalOptions="Start"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
